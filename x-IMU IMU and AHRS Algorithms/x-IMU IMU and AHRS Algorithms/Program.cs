@@ -30,10 +30,10 @@ namespace x_IMU_IMU_and_AHRS_Algorithms
             {
                 // Connect to x-IMU
                 Console.WriteLine("Searching for x-IMU...");
-                x_IMU_API.PortAssignment[] portAssignment = (new x_IMU_API.PortScanner(true, true)).Scan();
-                x_IMU_API.xIMUserial xIMUserial = new x_IMU_API.xIMUserial(portAssignment[0].PortName);
-                xIMUserial.Open();
-                Console.WriteLine("Connected to x-IMU " + portAssignment[0].DeviceID + " on " + portAssignment[0].PortName + ".");
+                //x_IMU_API.PortAssignment[] portAssignment = (new x_IMU_API.PortScanner(true, true)).Scan();
+                //x_IMU_API.xIMUserial xIMUserial = new x_IMU_API.xIMUserial(portAssignment[0].PortName);
+                //xIMUserial.Open();
+                //Console.WriteLine("Connected to x-IMU " + portAssignment[0].DeviceID + " on " + portAssignment[0].PortName + ".");
 
                 // Show 3D cuboid forms
                 Console.WriteLine("Showing 3D Cuboid forms...");
@@ -49,19 +49,19 @@ namespace x_IMU_IMU_and_AHRS_Algorithms
                 backgroundWorkerB.RunWorkerAsync();
 
                 // x-IMU data received events to update cuboid form
-                xIMUserial.QuaternionDataReceived += new x_IMU_API.xIMUserial.onQuaternionDataReceived(delegate(object s, x_IMU_API.QuaternionData e) { form_3DcuboidA.RotationMatrix = e.ConvertToRotationMatrix(); });
-                xIMUserial.CalInertialAndMagneticDataReceived += new x_IMU_API.xIMUserial.onCalInertialAndMagneticDataReceived(delegate(object s, x_IMU_API.CalInertialAndMagneticData e) { form_3DcuboidB.RotationMatrix = (new x_IMU_API.QuaternionData(AHRS.Quaternion)).ConvertToConjugate().ConvertToRotationMatrix(); });
+                //xIMUserial.QuaternionDataReceived += new x_IMU_API.xIMUserial.onQuaternionDataReceived(delegate(object s, x_IMU_API.QuaternionData e) { form_3DcuboidA.RotationMatrix = e.ConvertToRotationMatrix(); });
+                //xIMUserial.CalInertialAndMagneticDataReceived += new x_IMU_API.xIMUserial.onCalInertialAndMagneticDataReceived(delegate(object s, x_IMU_API.CalInertialAndMagneticData e) { form_3DcuboidB.RotationMatrix = (new x_IMU_API.QuaternionData(AHRS.Quaternion)).ConvertToConjugate().ConvertToRotationMatrix(); });
 
                 // Algorithm uses IMU update method.
                 Console.WriteLine("Algorithm running in IMU mode.");
-                xIMUserial.CalInertialAndMagneticDataReceived += new x_IMU_API.xIMUserial.onCalInertialAndMagneticDataReceived(xIMUserial_CalInertialAndMagneticDataReceived_updateIMU);
+                //xIMUserial.CalInertialAndMagneticDataReceived += new x_IMU_API.xIMUserial.onCalInertialAndMagneticDataReceived(xIMUserial_CalInertialAndMagneticDataReceived_updateIMU);
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
 
                 // Algorithm uses AHRS update method.
                 Console.WriteLine("Algorithm running in AHRS mode.");
-                xIMUserial.CalInertialAndMagneticDataReceived -= new x_IMU_API.xIMUserial.onCalInertialAndMagneticDataReceived(xIMUserial_CalInertialAndMagneticDataReceived_updateIMU);
-                xIMUserial.CalInertialAndMagneticDataReceived += new x_IMU_API.xIMUserial.onCalInertialAndMagneticDataReceived(xIMUserial_CalInertialAndMagneticDataReceived_updateAHRS);
+                //xIMUserial.CalInertialAndMagneticDataReceived -= new x_IMU_API.xIMUserial.onCalInertialAndMagneticDataReceived(xIMUserial_CalInertialAndMagneticDataReceived_updateIMU);
+                //xIMUserial.CalInertialAndMagneticDataReceived += new x_IMU_API.xIMUserial.onCalInertialAndMagneticDataReceived(xIMUserial_CalInertialAndMagneticDataReceived_updateAHRS);
             }
             catch (Exception ex)
             {
