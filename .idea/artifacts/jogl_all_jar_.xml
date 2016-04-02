@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="jogl-all_jar_">
-    <output-path>$PROJECT_DIR$/out/artifacts/jogl_all_jar_</output-path>
-    <root id="archive" name="jogl-all_jar_.jar">
-      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jogl-all.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="gluegen-rt_jar_">
-    <output-path>$PROJECT_DIR$/out/artifacts/gluegen_rt_jar_</output-path>
-    <root id="archive" name="gluegen-rt_jar_.jar">
-      <element id="extracted-dir" path="$PROJECT_DIR$/libs/gluegen-rt.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
