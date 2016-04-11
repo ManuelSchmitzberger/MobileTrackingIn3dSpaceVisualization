@@ -1,6 +1,8 @@
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
+import socket
+import sys
 import os
 import threading
  
@@ -36,7 +38,6 @@ def InitGL(Width, Height):
  
 def keyPressed(*args):
         global rotateX,rotateZ,rotateY
-        print args[0]
 
         if args[0] == ESCAPE:
                 sys.exit()
@@ -113,24 +114,68 @@ def DrawGLScene():
         glEnd()
  
         glutSwapBuffers()
- 
- 
+
+        updatePhoneRotations()
+
+def updatePhoneRotations():
+        global rotateX,rotateY,rotateZ
+
+
+
+        return
+
  
 def main():
         global window
 
+        # SETUP TCP/IP SOCKET
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # Bind the socket to the port
+        server_address = ('10.3.1.125', 4000)
+        print sys.stderr, 'starting up on %s port %s' % server_address
+        sock.bind(server_address)
+        # Listen for incoming connections
+        sock.listen(1)
+
+        # while True:
+        #     # Wait for a connection
+        #     print >>sys.stderr, 'waiting for a connection'
+        #     connection, client_address = sock.accept()
+        #
+        #     try:
+        #         print >>sys.stderr, 'connection from', client_address
+        #         # Receive the data in small chunks and retransmit it
+        #         while True:
+        #             data = connection.recv(200)
+        #             if data:
+        #                 #print >>sys.stderr, 'received "%s"' % data
+        #                 print >>sys.stderr, data
+        #                 #print >>sys.stderr, 'sending data back to the client'
+        #                 #connection.sendall(data)
+        #             else:
+        #                 #print >>sys.stderr, 'no more data from', client_address
+        #                 break
+        #     finally:
+        #         # Clean up the connection
+        #         connection.close()
+
+
+
+
+        # SETUP OPENGL
         glutInit(sys.argv)
         glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
         glutInitWindowSize(640,480)
         glutInitWindowPosition(200,200)
 
         window = glutCreateWindow('OpenGL Python Cube')
- 
+
         glutDisplayFunc(DrawGLScene)
         glutIdleFunc(DrawGLScene)
         glutKeyboardFunc(keyPressed)
         InitGL(640, 480)
         glutMainLoop()
+
  
 if __name__ == "__main__":
         main() 
